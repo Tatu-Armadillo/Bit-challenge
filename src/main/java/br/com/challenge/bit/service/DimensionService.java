@@ -1,7 +1,5 @@
 package br.com.challenge.bit.service;
 
-import java.time.LocalDate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +19,7 @@ public class DimensionService {
         return response;
     }
 
-    public Page<Dimension> findAll(Pageable pageable, LocalDate begindate, LocalDate finaldate) {
+    public Page<Dimension> findAll(Pageable pageable) {
         return this.dimensionRepository.findAll(pageable);
     } 
 

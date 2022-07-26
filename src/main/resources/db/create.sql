@@ -2,11 +2,11 @@ drop database if exists `challenge_backend`;
 create database `challenge_backend`;
 use `challenge_backend`;
 
-drop table if exists `products`;
-create table `products` (
-    id_product bigint primary key auto_increment,
+drop table if exists `item`;
+create table `item` (
+    id_item bigint primary key auto_increment,
     name varchar(100) not null,
-    date date not null,
+    date timestamp not null,
     dimension bigint not null
 );
 
@@ -19,4 +19,4 @@ create table `dimension` (
     length decimal(5,2) not null
 ); 
 
-alter table `products` add constraint fk_products_dimension foreign key (dimension) references dimension (id_dimension);
+alter table `item` add constraint fk_itens_dimension foreign key (dimension) references dimension (id_dimension);

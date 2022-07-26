@@ -10,31 +10,36 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-public class Products {
+@Table(name = "item")
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_product")
+    @Column(name = "id_item")
     private Long code;
 
     @Column(name = "name")
     private String name;
 
     @Column(name = "date")
-    private LocalDateTime data;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "dimension", referencedColumnName = "id_dimension")
     private Dimension dimension;
 
-    public Products() { }
+    public Item() { }
 
-    public Products(Long code, String name, LocalDateTime data, Dimension dimension) {
+    public Item(Long code, String name, LocalDateTime date, Dimension dimension) {
         this.code = code;
         this.name = name;
-        this.data = data;
+        this.date = date;
         this.dimension = dimension;
     }
 
@@ -54,12 +59,12 @@ public class Products {
         this.name = name;
     }
 
-    public LocalDateTime getData() {
-        return data;
+    public LocalDateTime getDate() {
+        return date;
     }
 
-    public void setData(LocalDateTime data) {
-        this.data = data;
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
     public Dimension getDimension() {
