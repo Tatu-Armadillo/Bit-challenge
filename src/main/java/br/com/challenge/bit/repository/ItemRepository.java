@@ -1,6 +1,6 @@
 package br.com.challenge.bit.repository;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,6 +16,6 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     @Query("SELECT item FROM Item item "
             + " WHERE item.date BETWEEN :begindate AND :finaldate"
             + " ORDER BY item.code ")
-    List<Item> findByDate(@Param("begindate") LocalDateTime begindate, @Param("finaldate") LocalDateTime finaldate);
+    List<Item> findByDate(@Param("begindate") Date begindate, @Param("finaldate") Date finaldate);
 
 }

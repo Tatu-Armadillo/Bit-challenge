@@ -1,6 +1,6 @@
 package br.com.challenge.bit.controller;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -27,8 +27,8 @@ public class ItemController {
 
     @GetMapping
     public ResponseEntity<List<Item>> findAllByDates(
-            @RequestParam(required = true) @DateTimeFormat(pattern="dd-MM-yyyy") LocalDate begindate,
-            @RequestParam(required = true) @DateTimeFormat(pattern="dd-MM-yyyy") LocalDate finaldate) {
+            @RequestParam(required = true) @DateTimeFormat(pattern="dd-MM-yyyy") Date begindate,
+            @RequestParam(required = true) @DateTimeFormat(pattern="dd-MM-yyyy") Date finaldate) {
 
         var response = this.itemService.findAllByDates(begindate, finaldate);
         return ResponseEntity.ok(response);

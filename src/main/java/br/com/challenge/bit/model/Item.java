@@ -1,6 +1,6 @@
 package br.com.challenge.bit.model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "item")
@@ -27,8 +25,7 @@ public class Item {
     private String name;
 
     @Column(name = "date")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime date;
+    private Date date;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "dimension", referencedColumnName = "id_dimension")
@@ -36,7 +33,7 @@ public class Item {
 
     public Item() { }
 
-    public Item(Long code, String name, LocalDateTime date, Dimension dimension) {
+    public Item(Long code, String name, Date date, Dimension dimension) {
         this.code = code;
         this.name = name;
         this.date = date;
@@ -59,11 +56,11 @@ public class Item {
         this.name = name;
     }
 
-    public LocalDateTime getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
