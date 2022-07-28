@@ -11,12 +11,16 @@ import br.com.challenge.bit.repository.ItemRepository;
 
 @Service
 public class ItemService {
-    
+
     @Autowired
     private ItemRepository itemRepository;
 
     @Autowired
     private DimensionService dimensionService;
+
+    public List<Item> findAll() {
+        return this.itemRepository.findAll();
+    }
 
     public List<Item> findAllByDates(Date begindate, Date finaldate) {
         var itens = this.itemRepository.findByDate(begindate, finaldate);
@@ -27,6 +31,12 @@ public class ItemService {
         var dimension = this.dimensionService.create(item.getDimension());
         item.setDimension(dimension);
         var response = this.itemRepository.save(item);
+        return response;
+    }
+
+    public List<Item> createByList(List<Item> itens) {
+        itens.forEach(item -> this.create(item));
+        var response = this.findAll();
         return response;
     }
 

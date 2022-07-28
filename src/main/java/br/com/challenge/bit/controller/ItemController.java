@@ -27,8 +27,8 @@ public class ItemController {
 
     @GetMapping
     public ResponseEntity<List<Item>> findAllByDates(
-            @RequestParam(required = true) @DateTimeFormat(pattern="dd-MM-yyyy") Date begindate,
-            @RequestParam(required = true) @DateTimeFormat(pattern="dd-MM-yyyy") Date finaldate) {
+            @RequestParam(required = true) @DateTimeFormat(pattern = "dd-MM-yyyy") Date begindate,
+            @RequestParam(required = true) @DateTimeFormat(pattern = "dd-MM-yyyy") Date finaldate) {
 
         var response = this.itemService.findAllByDates(begindate, finaldate);
         return ResponseEntity.ok(response);
@@ -37,6 +37,12 @@ public class ItemController {
     @PostMapping
     public ResponseEntity<Item> create(@RequestBody @Valid Item item) {
         var response = this.itemService.create(item);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/by-list")
+    public ResponseEntity<List<Item>> createByList(@RequestBody @Valid List<Item> itens) {
+        var response = this.itemService.createByList(itens);
         return ResponseEntity.ok(response);
     }
 
